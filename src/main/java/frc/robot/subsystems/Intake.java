@@ -20,15 +20,18 @@ public class Intake extends SubsystemBase {
     public void run() {
         SmartDashboard.putString("Intake State", "Intake.");
         topMotor.set(speed);
-        bottomMotor.set(-speed);
-        if (speed < 0.50) {
+        bottomMotor.set(speed);
+        if (speed < 0.60) {
             speed += 0.01;
         }
     }
 
     public void stop() {
-        topMotor.set(0);
-        bottomMotor.set(0);
+        topMotor.set(speed);
+        bottomMotor.set(speed);
+        if (speed > 0) {
+          speed -= 0.01;
+        }
     }
 
 }

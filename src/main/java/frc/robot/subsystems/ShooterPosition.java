@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -22,6 +23,7 @@ public class ShooterPosition extends SubsystemBase {
     private final PIDController PidController;
 
     public ShooterPosition() {
+
         leftEncoder.setPositionConversionFactor(Constants.ShooterPositionConstans.kAngleEncoderRot2Degrees);
         rightEncoder.setPositionConversionFactor(Constants.ShooterPositionConstans.kAngleEncoderRot2Degrees);
         leftEncoderfirstPosition = leftEncoder.getPosition();
@@ -29,7 +31,8 @@ public class ShooterPosition extends SubsystemBase {
         SmartDashboard.putNumber("Left Encoder Value", leftEncoderfirstPosition);
         SmartDashboard.putNumber("Right Encoder Value", rightEncoderfirstPosition);
 
-        PidController = new PIDController(0.01, 0, 0);
+        PidController = new PIDController(0.10, 0, 0);
+
         PidController.enableContinuousInput(-180, 180);
 
     }
@@ -39,9 +42,12 @@ public class ShooterPosition extends SubsystemBase {
         double leftPosition = -leftEncoder.getPosition() + leftEncoderfirstPosition;
         double rightPosition = rightEncoder.getPosition() - rightEncoderfirstPosition;
 
-        /*leftEncoder.setPosition(-(angle + leftEncoder.getPosition() - leftEncoderfirstPosition));
-        rightEncoder.setPosition(angle + rightEncoder.getPosition() - rightEncoderfirstPosition);*/
-
+        /*
+         * leftEncoder.setPosition(-(angle + leftEncoder.getPosition() -
+         * leftEncoderfirstPosition));
+         * rightEncoder.setPosition(angle + rightEncoder.getPosition() -
+         * rightEncoderfirstPosition);
+         */
 
         leftMotor.set(-PidController.calculate(leftPosition, angle));
         rightMotor.set(PidController.calculate(rightPosition, angle));

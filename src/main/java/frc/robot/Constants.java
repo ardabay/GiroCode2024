@@ -110,7 +110,9 @@ public final class Constants {
         public static final class JoystickControlConstans {
                 public static final int StopSwerveButton = 1; // Swerve Stop Button
                 public static final int ZeroGyroButton = 2; // Swerve Zero Gyro Button
-                public static final int ShootButton = 3; // Start Shooter Button
+                public static final int ShootButton = 3;
+                public static final int StopButton = 4;
+                public static final int IntakeButton = 5;  // Start Shooter Button
         }
 
         public static final class TransferConstans {
@@ -126,6 +128,10 @@ public final class Constants {
         public static final class ShooterPositionConstans {
 
         public static final double kAngleEncoderRot2Degrees = (1 / 12.0) * 360;
+        }
+
+        public static final class VisionConstants {
+                public static final double CamHeight = 0;
         }
 
 }

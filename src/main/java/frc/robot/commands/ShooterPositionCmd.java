@@ -5,9 +5,11 @@ import frc.robot.subsystems.ShooterPosition;
 
 public class ShooterPositionCmd extends Command {
     private ShooterPosition shooterPositionSubsytem;
+    private double angle;
 
-    public ShooterPositionCmd(ShooterPosition shooterPositionSubsytem) {
+    public ShooterPositionCmd(ShooterPosition shooterPositionSubsytem, double angle) {
         this.shooterPositionSubsytem = shooterPositionSubsytem;
+        this.angle = angle;
         addRequirements(shooterPositionSubsytem);
     }
 
@@ -17,7 +19,7 @@ public class ShooterPositionCmd extends Command {
 
     @Override
     public void execute() {
-        shooterPositionSubsytem.ChangeAngle(10);
+        shooterPositionSubsytem.ChangeAngle(angle);
     }
 
     @Override

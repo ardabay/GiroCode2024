@@ -29,9 +29,10 @@ public class TransferSubsystem extends SubsystemBase {
     }
 
     public void stop() {
-
-        leftMotor.set(0);
-        rightMotor.set(0);
-
+        leftMotor.set(-speed);
+        rightMotor.set(-speed);
+        if (speed > 0) {
+          speed -= 0.01;
+        }
     }
 }

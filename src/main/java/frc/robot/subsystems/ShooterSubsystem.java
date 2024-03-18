@@ -15,15 +15,18 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void run() {
-    leftMotor.set(speed);
-    rightMotor.set(-speed);
+    leftMotor.set(-speed);
+    rightMotor.set(speed);
     if (speed < 1) {
       speed += 0.01;
     }
   }
 
   public void stop() {
-    leftMotor.set(0);
-    rightMotor.set(0);
+    leftMotor.set(-speed);
+    rightMotor.set(speed);
+    if (speed > 0) {
+      speed -= 0.01;
+    }
   }
 }
